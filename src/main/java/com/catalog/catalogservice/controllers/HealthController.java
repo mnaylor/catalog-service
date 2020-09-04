@@ -11,23 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class PatternController {
-    private EntryService entryService;
+public class HealthController {
 
-    @Autowired
-    public PatternController(EntryService entryService) {
-        this.entryService = entryService;
+    public HealthController() {
     }
 
-    @GetMapping("/patterns")
-    List<Pattern> all() {
-        return entryService.getAllPatterns();
-    }
-
-    @PostMapping("/pattern")
-    String newPattern(@RequestBody Pattern pattern) {
-        String createdPatternId = entryService.createPattern(pattern);
-        return createdPatternId;
+    @GetMapping("/health")
+    Boolean all() {
+        return true;
     }
 
 }

@@ -1,17 +1,41 @@
 package com.catalog.catalogservice.config;
 
+import com.catalog.catalogservice.repositories.ESEntryRepository;
+import com.catalog.catalogservice.repositories.ESPatternRepository;
 import com.catalog.catalogservice.repositories.EntryRepository;
 import com.catalog.catalogservice.services.EntryService;
-import com.catalog.catalogservice.services.EntryServiceImpl;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.elasticsearch.client.ClientConfiguration;
+import org.springframework.data.elasticsearch.client.RestClients;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
 @Configuration
+@EnableElasticsearchRepositories(basePackages = "com.catalog.catalogservice.repositories")
 @ComponentScan("com.catalog.catalogservice")
 public class CatalogConfig {
+
     @Bean
-    public EntryService entryService() {
-        return new EntryServiceImpl();
+    public RestHighLevelClient client() {
+        ClientConfiguration clientConfiguration
+                = ClientConfiguration.builder()
+                .connectedTo("localhost:9200")
+                .build();
+
+        return RestClients.create(clientConfiguration).rest();
+    }
+
+    @Bean
+    public ElasticsearchOperations elasticsearchTemplate() {
+        return new ElasticsearchRestTemplate(client());
+    }
+
+    @Bean
+    public EntryRepository entryRepository() {
+        return new ESEntryRepository();
     }
 }
