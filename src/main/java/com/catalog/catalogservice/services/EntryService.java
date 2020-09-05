@@ -23,6 +23,10 @@ public class EntryService {
         return entryRepository.getAllPatterns();
     }
 
+    public Pattern getPatternById(String id) {
+        return entryRepository.getPatternById(id);
+    }
+
     public Pattern createPattern(Pattern pattern) {
         pattern.setLastModifiedInMillis(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC));
 

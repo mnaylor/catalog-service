@@ -8,6 +8,7 @@ import java.util.List;
 public interface EntryRepository {
     // Pattern
     public List<Pattern> getAllPatterns();
+    public Pattern getPatternById(String id);
     public Pattern createPattern(Pattern pattern);
     public Pattern updatePattern(Pattern pattern);
 

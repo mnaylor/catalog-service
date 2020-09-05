@@ -8,5 +8,6 @@ import org.springframework.data.repository.Repository;
 public interface ESPatternRepository extends Repository<Pattern, String> {
     Page<Pattern> findAll();
     Page<Pattern> findAll(Pageable pageable);
+    Pattern findById(String id);
     Pattern save(Pattern pattern);
 }

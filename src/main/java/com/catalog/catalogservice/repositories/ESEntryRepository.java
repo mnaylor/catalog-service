@@ -26,6 +26,12 @@ public class ESEntryRepository implements EntryRepository {
     }
 
     @Override
+    public Pattern getPatternById(String id) {
+        Pattern pattern = patternRepository.findById(id);
+        return pattern;
+    }
+
+    @Override
     public Pattern createPattern(Pattern pattern) {
         return updatePattern(pattern);
     }

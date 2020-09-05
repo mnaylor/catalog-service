@@ -21,6 +21,13 @@ public class PatternController {
         return entryService.getAllPatterns();
     }
 
+    @GetMapping("/pattern/{id}")
+    Pattern getPatternById(@PathVariable String id) {
+        Pattern pattern = entryService.getPatternById(id);
+
+        return pattern;
+    }
+
     @PostMapping("/pattern")
     Pattern newPattern(@RequestBody Pattern pattern) {
         Pattern createdPattern = entryService.createPattern(pattern);
