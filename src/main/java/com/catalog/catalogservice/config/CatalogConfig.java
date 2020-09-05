@@ -38,4 +38,5 @@ public class CatalogConfig {
     public EntryRepository entryRepository() {
         return new ESEntryRepository();
     }
+
 }

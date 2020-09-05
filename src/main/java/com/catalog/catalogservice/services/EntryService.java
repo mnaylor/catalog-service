@@ -5,6 +5,8 @@ import com.catalog.catalogservice.repositories.EntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +23,19 @@ public class EntryService {
         return entryRepository.getAllPatterns();
     }
 
-    public String createPattern(Pattern pattern) {
-        String id = entryRepository.createPattern(pattern);
+    public Pattern createPattern(Pattern pattern) {
+        pattern.setLastModifiedInMillis(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC));
 
-        return id;
+        Pattern created = entryRepository.createPattern(pattern);
+
+        return created;
+    }
+
+    public Pattern updatePattern(Pattern pattern) {
+        pattern.setLastModifiedInMillis(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC));
+
+        Pattern updated = entryRepository.createPattern(pattern);
+
+        return updated;
     }
 }

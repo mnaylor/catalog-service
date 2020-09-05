@@ -4,7 +4,6 @@ import com.catalog.catalogservice.models.Pattern;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.Repository;
-import org.springframework.data.repository.reactive.ReactiveSortingRepository;
 
 public interface ESPatternRepository extends Repository<Pattern, String> {
     Page<Pattern> findAll();

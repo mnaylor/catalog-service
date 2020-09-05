@@ -4,10 +4,12 @@ import com.catalog.catalogservice.models.Fabric;
 import com.catalog.catalogservice.models.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ESEntryRepository implements EntryRepository {
     private ESPatternRepository patternRepository;
 
@@ -24,9 +26,14 @@ public class ESEntryRepository implements EntryRepository {
     }
 
     @Override
-    public String createPattern(Pattern pattern) {
-        Pattern createdPattern = patternRepository.save(pattern);
-        return createdPattern.getId();
+    public Pattern createPattern(Pattern pattern) {
+        return updatePattern(pattern);
+    }
+
+    @Override
+    public Pattern updatePattern(Pattern pattern) {
+        Pattern updatedPattern = patternRepository.save(pattern);
+        return updatedPattern;
     }
 
     @Override
