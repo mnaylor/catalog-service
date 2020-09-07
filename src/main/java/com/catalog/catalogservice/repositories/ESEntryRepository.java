@@ -1,5 +1,7 @@
 package com.catalog.catalogservice.repositories;
 
+import com.catalog.catalogservice.exceptions.CatalogServiceException;
+import com.catalog.catalogservice.models.EntryType;
 import com.catalog.catalogservice.models.Fabric;
 import com.catalog.catalogservice.models.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,17 @@ public class ESEntryRepository implements EntryRepository {
 
     @Override
     public Pattern getPatternById(String id) {
-        Pattern pattern = patternRepository.findById(id);
+        Pattern pattern = null;
+        try {
+            pattern = patternRepository.findById(id);
+        } catch (Exception ex) {
+            throw new CatalogServiceException(CatalogServiceException.ServiceException.RepositoryException, ex);
+        }
+
+        if (pattern == null) {
+            throw new CatalogServiceException(CatalogServiceException.ServiceException.EntryNotFoundException);
+        }
+
         return pattern;
     }
 
@@ -38,7 +50,14 @@ public class ESEntryRepository implements EntryRepository {
 
     @Override
     public Pattern updatePattern(Pattern pattern) {
-        Pattern updatedPattern = patternRepository.save(pattern);
+        Pattern updatedPattern;
+
+        try {
+            updatedPattern = patternRepository.save(pattern);
+        } catch (Exception ex) {
+            throw new CatalogServiceException(CatalogServiceException.ServiceException.RepositoryException);
+        }
+
         return updatedPattern;
     }
 
