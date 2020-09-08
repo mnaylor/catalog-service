@@ -22,7 +22,7 @@ public class PatternController {
     List<Pattern> all() {
         List<Pattern> patterns = entryService.getAllPatterns();
 
-        log.info("Found %s patterns", patterns.size());
+        log.info(String.format("Found %s patterns", patterns.size()));
 
         return patterns;
     }

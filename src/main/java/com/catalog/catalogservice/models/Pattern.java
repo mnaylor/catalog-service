@@ -8,7 +8,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.util.List;
 
-@Document(indexName = "catalog")
+@Document(indexName = "pattern-entry")
 @TypeAlias("pattern")
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)

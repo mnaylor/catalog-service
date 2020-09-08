@@ -13,5 +13,8 @@ public interface EntryRepository {
     public Pattern updatePattern(Pattern pattern);
 
     // Fabric
-    public List<Fabric> getAllFabric();
+    public List<Fabric> getAllFabrics();
+    public Fabric getFabricById(String id);
+    public Fabric createFabric(Fabric fabric);
+    public Fabric updateFabric(Fabric fabric);
 }

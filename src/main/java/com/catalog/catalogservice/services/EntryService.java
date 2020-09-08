@@ -1,5 +1,6 @@
 package com.catalog.catalogservice.services;
 
+import com.catalog.catalogservice.models.Fabric;
 import com.catalog.catalogservice.models.Pattern;
 import com.catalog.catalogservice.repositories.EntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,31 @@ public class EntryService {
         pattern.setLastModifiedInMillis(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC));
 
         Pattern updated = entryRepository.createPattern(pattern);
+
+        return updated;
+    }
+    
+    // Fabric
+    public List<Fabric> getAllFabrics() {
+        return entryRepository.getAllFabrics();
+    }
+
+    public Fabric getFabricById(String id) {
+        return entryRepository.getFabricById(id);
+    }
+
+    public Fabric createFabric(Fabric fabric) {
+        fabric.setLastModifiedInMillis(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC));
+
+        Fabric created = entryRepository.createFabric(fabric);
+
+        return created;
+    }
+
+    public Fabric updateFabric(Fabric fabric) {
+        fabric.setLastModifiedInMillis(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC));
+
+        Fabric updated = entryRepository.createFabric(fabric);
 
         return updated;
     }
