@@ -1,9 +1,7 @@
 package com.catalog.catalogservice.config;
 
 import com.catalog.catalogservice.repositories.ESEntryRepository;
-import com.catalog.catalogservice.repositories.ESPatternRepository;
 import com.catalog.catalogservice.repositories.EntryRepository;
-import com.catalog.catalogservice.services.EntryService;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

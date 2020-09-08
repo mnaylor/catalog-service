@@ -2,11 +2,13 @@ package com.catalog.catalogservice.controllers;
 
 import com.catalog.catalogservice.models.Pattern;
 import com.catalog.catalogservice.services.EntryService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 public class PatternController {
     private EntryService entryService;
@@ -18,7 +20,11 @@ public class PatternController {
 
     @GetMapping("/patterns")
     List<Pattern> all() {
-        return entryService.getAllPatterns();
+        List<Pattern> patterns = entryService.getAllPatterns();
+
+        log.info("Found %s patterns", patterns.size());
+
+        return patterns;
     }
 
     @GetMapping("/pattern/{id}")
